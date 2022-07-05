@@ -19,7 +19,7 @@ The test data are available here:
 
 https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv
 
-The data for this project come from this source: http://groupware.les.inf.puc-rio.br/har.(this link does not work though. I searched on the course discussion forums, many students mentioned this, but no final solutions) If use the document for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment. 
+The data for this project come from this source: http://groupware.les.inf.puc-rio.br/har. (this link does not work though. I searched on the course discussion forums, many students mentioned this, but no final solutions) If use the document for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment. 
 
 What to submit
 
