@@ -4,7 +4,7 @@
 Thank you for reviewing my assignment! You can download the repo, and will be able to view the compiled HTML file. 
 
 
-## Course Project Instructions
+## Course Project Instructions (from course site on Coursera)
 
 Background
 
@@ -19,15 +19,8 @@ The test data are available here:
 
 https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv
 
-The data for this project come from this source: http://groupware.les.inf.puc-rio.br/har. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment. 
-What you should submit
+The data for this project come from this source: http://groupware.les.inf.puc-rio.br/har.(this link does not work though. I searched on the course discussion forums, many students mentioned this, but no final solutions) If use the document for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment. 
 
-The goal of your project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. You may use any of the other variables to predict with. You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. You will also use your prediction model to predict 20 different test cases. 
-Peer Review Portion
+What to submit
 
-Your submission for the Peer Review portion should consist of a link to a Github repo with your R markdown and compiled HTML file describing your analysis. Please constrain the text of the writeup to < 2000 words and the number of figures to be less than 5. It will make it easier for the graders if you submit a repo with a gh-pages branch so the HTML page can be viewed online (and you always want to make it easy on graders :-).
-Course Project Prediction Quiz Portion
-
-Apply your machine learning algorithm to the 20 test cases available in the test data above and submit your predictions in appropriate format to the Course Project Prediction Quiz for automated grading. 
-Reproducibility 
-
+The goal of this project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. Use any of the other variables to predict with. Create a report describing how the model was built, how cross validation was performed, what the expected out of sample error is, and why the choices were made. Use the prediction model to predict 20 different test cases. 
