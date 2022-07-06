@@ -1,0 +1,96 @@
+---
+title: "Practical Machine Learning - Week 4 Project"
+author: "Wenju Cui"
+date: "July 6, 2022"
+output: 
+  html_document: 
+  #pdf_document:
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Loading and preprocessing the data
+
+### 1.1 Load the data and packages
+View data and convert "#DIV/0!" or blanks to NA value
+
+```{r}
+train <- read.csv("pml-training.csv", na.strings = c("#DIV/0!", "NA", ""))
+test  <- read.csv("pml-testing.csv",  na.strings = c("#DIV/0!", "NA", ""))
+
+library(caret)
+library(randomForest)
+```
+
+### 1.2 Drop columns
+Drop colums with NA and columns irrelevant to modeling such as "user_name", "X", etc. 
+Apply same treatment to the test data
+
+```{r}
+No_na_cols <- sapply(train, function(x)all(!is.na(x)))
+train_clean_1 <- train[, No_na_cols]
+train_clean_2 <- train_clean_1[, c(8:60)]
+
+test_clean_1 <- test[, No_na_cols]
+test_clean_2 <- test_clean_1[, c(8:60)]
+```
+
+### 1.3 Split training data
+
+```{r}
+set.seed(1234)
+
+inTrain <- createDataPartition(y=train_clean_2$classe, p=0.75, list=FALSE)
+train_train <- train_clean_2[inTrain,]
+train_test  <- train_clean_2[-inTrain,]
+
+# check level of classe variable
+table(train_train$classe)
+```
+
+
+## 2. Modeling
+
+### 2.1 Decision Tree
+```{r}
+# Fit model
+modfit_tree <- train(classe ~., method='rpart', data=train_train)
+
+# Prediction
+tree_Prediction <- predict(modfit_tree, train_test)
+
+# Confusion matrix
+confusionMatrix(tree_Prediction,as.factor(train_test$classe))
+
+# Plot the tree
+plot(modfit_tree$finalModel, uniform=TRUE, main="Classfication Tree")
+text(modfit_tree$finalModel, use.n=TRUE, all=TRUE, cex=0.8)
+```
+
+### 2.2 Random Forest
+```{r}
+# Fit model
+modfit_rf2 <- randomForest(as.factor(train_train$classe) ~ ., data=train_train, method="class")
+# tried using train(classe ~ ., data =train_train, method='rf'), running time is too long
+
+# Prediction
+rf2_Prediction <- predict(modfit_rf2, train_test)
+
+# Confusion matrix
+confusionMatrix(rf2_Prediction, as.factor(train_test$classe))
+
+```
+
+
+## 3. Conclusion
+Modeling using Random Forest has a way much better performanc than modeling using decision tree. Random Forest yeilds an accuracy = 0.9957, whereas decision tree accuracy = 0.4945. Random Forest model is chosen and applied to the test data for new prediction. 
+
+
+## 4. New Prediction
+```{r}
+predict <- predict(modfit_rf2, test_clean_2)
+predict
+```
